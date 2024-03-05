@@ -17,15 +17,15 @@ You can easily manage and control any extra scripts and styles that you need wit
 
 ### Plugin Installation
 
-1. Copy the `cm-onboarding` folder to the `/wp-content/plugins/` path
-2. Go to the ‘Plugins’ menu in WordPress and turn on the plugin
+* Copy the `cm-onboarding` folder to the `/wp-content/plugins/` path
+* Go to the ‘Plugins’ menu in WordPress and turn on the plugin
 
 ### Plugin usage instructions
 
-1. Enter the “Script Name” and copy the “Script Code”
-2. Choose the “Script Type” (CSS or JS), the “Script Location” (header or footer), and the “Autoload Option”
-3. Mark the “Custom Post Types” that need the script if needed
-4. Press “Save Changes”
+* Enter the “Script Name” and copy the “Script Code”
+* Choose the “Script Type” (CSS or JS), the “Script Location” (header or footer), and the “Autoload Option”
+* Mark the “Custom Post Types” that need the script if needed
+* Press “Save Changes”
 
 ## Insert Headers and Footers Premium Edition
 
