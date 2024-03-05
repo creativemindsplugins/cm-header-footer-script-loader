@@ -1,0 +1,22 @@
+<?php
+echo do_shortcode('[cminds_free_activation id="cmhandfsl"]');
+?>
+<div style="height:15px;"></div>
+
+<div class="cminds_settings_description">
+   
+
+    <div>
+        <div class="cmtt_field_message_container"></div>
+        <form method="post">
+            <input title="<?php _e( 'Warning! This option will completely erase all of the data stored by the CM Header & Footer Script Loader in the database: items, options etc. <br/> It cannot be reverted."', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+                   onclick="return confirm('<?php _e( 'All database items of CM Header & Footer Script Loader (scripts, custom include settings) will be erased. This cannot be reverted.', CMHeaderAndFooterSL::$plugin_text_domain ); ?>')"
+                   type="submit" name="<?php echo CMHeaderAndFooterSL::$plugin_slug . '_cleanup'; ?>" value="<?php _e( 'Clenup database', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" class="button cmtt-cleanup-button"/>
+			<?php wp_nonce_field( CMHeaderAndFooterSL::$plugin_slug . '_cleanup', CMHeaderAndFooterSL::$plugin_slug . '_cleanup_nonce' ); ?>
+        </form>
+    </div>
+</div>
+
+<br/>
+
+<div class="clear"></div>
