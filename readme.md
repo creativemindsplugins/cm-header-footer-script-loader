@@ -11,7 +11,7 @@
 
 **Our easy-to-use Header and Footer Script Loader Plugin helps you to create header and footer scripts and styles on your site based on WordPress Platform.**
 
-You can easily manage and control any extra scripts and styles that you need with this plugin. This allows you to load all the scripts and styles that you want in the plugin settings, before you apply them on your site. You can also put your own custom JavaScript and code to customize your site’s appearance and performance. So, just you will be decide if you want a script to be uploaded by itself or by your hand in every post that you make!
+You can easily manage and control any extra scripts and styles that you need with this plugin. This allows you to load all the scripts and styles that you want in the plugin settings, before you apply them on your site. You can also put your own custom JavaScript and code to customize your site’s appearance and performance. So, you can decide if you want a script to be loaded automatically or manually on chosen post types.
 
 ## Installation and usage
 
@@ -24,7 +24,7 @@ You can easily manage and control any extra scripts and styles that you need wit
 
 * Enter the “Script Name” and copy the “Script Code”
 * Choose the “Script Type” (CSS or JS), the “Script Location” (header or footer), and the “Autoload Option”
-* Mark the “Custom Post Types” that need the script if needed
+* Mark the “Custom Post Types” that need the script to be enabled
 * Press “Save Changes”
 
 ## Insert Headers and Footers Premium Edition
