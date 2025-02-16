@@ -3,11 +3,13 @@
 * Name: CM Header & Footer Script Loader
 * Contributors: CreativeMindsSolutions
 * Minimum WordPress version: 5.4.0
-* Tested up to WordPress version: 6.6
+* Tested up to WordPress version: 6.7.2
 
 ## Introduction
 
 [Premium Plugin Page](https://www.cminds.com/wordpress-plugins-library/wordpress-header-and-footer-script-loader-plugin/) | [Videos](https://www.videolessonsplugin.com/video-lesson/lesson/header-footer-script-loader-plugin/)  | [User Guide](https://creativeminds.helpscoutdocs.com/category/452-header-and-footer-script-loader) 
+
+⭐ Meet the 2025 update of CM Header and Footer! With a sleek new design and an improved script editor, managing your site’s header and footer has never been easier.
 
 **Our easy-to-use Header and Footer Script Loader Plugin helps you to create header and footer scripts and styles on your site based on WordPress Platform.**
 
@@ -47,9 +49,10 @@ With the [Premium version of our Insert Headers and Footers Plugin](https://www.
 
 <details><summary> <b>Expand</b> </summary>
 
-* Change as many scripts and styles as you need
+* Change as many JS scripts and CSS styles as you need
 * Choose what scripts will be loaded on header or footer
-* Choose what scripts will be loaded on specific posts or pages
+* Define scripts to load on all posts and pages
+* Define scripts to load on specific posts or pages
 
 </details>
 
@@ -59,13 +62,16 @@ With the [Premium version of our Insert Headers and Footers Plugin](https://www.
 
 > [Pro Version Detailed Features List](https://www.cminds.com/wordpress-plugins-library/wordpress-header-and-footer-script-loader-plugin/)
 
-* Enable support for unique post types
-* Facilitate the loading of scripts on custom posts
-* Direct scripts and styles towards a particular group of posts, determined by post type
-* Manage the loading of scripts on individual posts via a metabox
-* Bypass the global setting for a specific style or script, and make a decision on whether to upload the script
-* Aim the script at a URL or a set of URLs
-* Specify the device type for each script: desktop only, mobile only, or both
-* Incorporate custom headers and modify scripts in the headers or footers
+* Add JS, CSS, PHP and HTML scripts.
+* Choose where to load scripts: in header, footer, after opening body tag, before or after content.
+* Load scripts on standard and custom posts.
+* Load scripts on selected posts and pages.
+* Load scripts in chosen post categories.
+* Load scripts in chosen post tags.
+* Load scripts for specific URLs.
+* Load scripts by device type: desktop, mobile or both.
+* Override script loading for each post.
+* Define script launch by adding timeframe.
+* Add titles and notes to scripts.
 
 </details>
