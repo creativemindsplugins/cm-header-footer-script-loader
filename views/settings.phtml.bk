@@ -1,0 +1,148 @@
+<?php include 'top.phtml'; ?>
+<script>
+jQuery(function($) {
+	
+	$('.cm-settings-tabs a').click(function() {
+		var match = this.href.match(/\#tab\-([^\#]+)$/);
+		$('#settings .settings-category.current').removeClass('current');
+		$('#settings .settings-category-'+ match[1]).addClass('current');
+		$('.cm-settings-tabs a.current').removeClass('current');
+		$('.cm-settings-tabs a[href="#tab-'+ match[1] +'"]').addClass('current');
+		this.blur();
+	});
+	if (location.hash.length > 0) {
+		$('.cm-settings-tabs a[href="'+ location.hash +'"]').click();
+	} else {
+		$('.cm-settings-tabs li:first-child a').click();
+	}
+	
+	
+});
+
+</script>
+<style>
+.cm-settings-tabs, .cm-settings-tabs li {list-style: none; padding: 0; margin: 0;}
+.cm-settings-tabs li, .cm-settings-tabs a {display: inline-block;}
+.cm-settings-tabs a {padding: 0.5em 1em 12px 1em; font-size: 130%; font-weight: bold; text-decoration: none; border: solid #cccccc 1px; border-bottom: none;
+	border-radius: 5px; position: relative; top: 4px; margin-right: 0.4em; z-index: 88; background: #e9e9e9; color: #666666;}
+.cm-settings-tabs a.current {color: black; background: white;}
+.settings-category {display: none;}
+.settings-category.current {display: block;}
+
+</style>
+
+<form class="repeater" method="post" action=""  id="settings">
+
+
+     <ul class="cm-settings-tabs">
+            <li><a href="#tab-upgrade">Upgrade</a>
+            <li><a href="#tab-general">General Settings</a>
+            <li><a href="#tab-installation">Installation Guide</a>
+        </ul>
+        <div class="inner">
+
+            <div class="settings-category settings-category-upgrade">
+                <table width="100%"><tbody>
+                        <tr>
+                            <td> <?php echo do_shortcode( '[cminds_upgrade_box id="cmhandfsl"]' ); ?></td>
+                        </tr>
+                    </tbody></table>
+            </div>
+
+     <div class="settings-category settings-category-general">
+       
+
+	<div data-repeater-list="form-item">
+	<?php
+
+		$scripts = get_option( CMHeaderAndFooterSL::$plugin_slug . '_scripts' );
+		$scripts = maybe_unserialize( $scripts );
+
+		if( isset( $scripts )
+		&& is_array( $scripts )
+		&& ! empty( $scripts ) )
+		{
+			foreach( $scripts as $ID => $script ){
+
+		?>
+			<div data-repeater-item class="repeater-item">
+				<div class="column half">
+					<textarea type="text" name="item-code" class="item-code" placeholder="<?php _e( 'Script Code', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" ><?php echo stripslashes( json_decode( $script['item_code'] ) ); ?></textarea>
+				</div>
+				<div class="column auto">
+					<label for="item-type"><?php _e( 'Script Type', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+					<select class="item-type" name="item-type">
+						<option value="css" <?php selected( $script['item_type'], 'css' ); ?>><?php _e( 'CSS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+						<option value="js" <?php selected( $script['item_type'], 'js' ); ?>><?php _e( 'JS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					</select><br />
+					<label for="item-destination"><?php _e( 'Script Location', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+					<select class="item-destination" name="item-destination">
+						<option value="header" <?php selected( $script['item_destination'], 'header' ); ?>><?php _e( 'Header Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+						<option value="footer" <?php selected( $script['item_destination'], 'footer' ); ?>><?php _e( 'Footer Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					</select><br />
+					<label for="item-load"><?php _e( 'Autoload Option', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+					<select class="item-load" name="item-load">
+						<option value="all" <?php selected( $script['item_load'], 'all' ); ?>><?php _e( 'Load by default on All Posts and Pages', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+						<option value="custom" <?php selected( $script['item_load'], 'custom' ); ?>><?php _e( 'Load On Specific Post Types', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+						<option value="off" <?php selected( $script['item_load'], 'off' ); ?>><?php _e( 'Don’t load by default', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					</select><br />
+				</div>
+				<div class="column auto cpt <?php if( $script['item_load'] != 'custom' ){ echo 'hidden'; } ?>">
+					<p><?php _e( 'Include this script on selected post types:', CMHeaderAndFooterSL::$plugin_text_domain ); ?></p>
+					<?php echo $this->get_custom_post_types_checkboxes( array( 'public' => true ), $script['item_load_cpt'] ); ?>
+				</div>
+				<input type="hidden" value="<?php echo esc_attr( $ID ); ?>" name="item-ID" class="item_ID" />
+				<input data-repeater-delete type="button" value="<?php _e( 'Delete', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" class="delete_item button-secondary" />
+			</div>
+		<?php
+			}
+		}
+		?>
+		<div data-repeater-item class="repeater-item">
+			<div class="column half">
+				<textarea type="text" name="item-code" class="item-code" placeholder="<?php _e( 'Script Code', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" ></textarea>
+			</div>
+			<div class="column auto">
+				<label for="item-type"><?php _e( 'Script Type', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+				<select class="item-type" name="item-type">
+					<option value="css"><?php _e( 'CSS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					<option value="js"><?php _e( 'JS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+				</select><br />
+				<label for="item-destination"><?php _e( 'Script Location', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+				<select class="item-destination" name="item-destination">
+					<option value="header"><?php _e( 'Header Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					<option value="footer"><?php _e( 'Footer Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+				</select><br />
+				<label for="item-load"><?php _e( 'Autoload Option', CMHeaderAndFooterSL::$plugin_text_domain ); ?></label>
+				<select class="item-load" name="item-load">
+					<option value="all"><?php _e( 'Load by default on All Posts and Pages', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					<option value="custom"><?php _e( 'Load On Specific Post Types', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+					<option value="off"><?php _e( 'Don’t load by default', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+				</select><br />
+			</div>
+			<div class="column auto cpt hidden">
+				<p><?php _e( 'Include this script on selected post types:', CMHeaderAndFooterSL::$plugin_text_domain ); ?></p>
+				<?php echo $this->get_custom_post_types_checkboxes( array( 'public' => true ) ); ?>
+			</div>
+			<input type="hidden" value="<?php echo $this->get_unique_id(); ?>" name="item-ID" class="item_ID" />
+			<input data-repeater-delete type="button" value="<?php _e( 'Delete', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" class="delete_item button-secondary" />
+		</div>
+	</div>
+
+</div>
+
+
+           <div class="settings-category settings-category-installation">
+                <table width="100%"><tbody>
+                        <tr>
+                            <td><?php echo do_shortcode( '[cminds_free_guide id="cmhandfsl"]' ); ?></td>
+                        </tr>
+                    </tbody></table>
+            </div>
+
+
+	<input data-repeater-create type="button" value="<?php _e( 'Add new', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" class="button-primary" />
+	<input type="hidden" value="form_submit" name="add_item_form_submit" />
+	<?php wp_nonce_field( CMHeaderAndFooterSL::$plugin_slug . '_save_scripts', CMHeaderAndFooterSL::$plugin_slug . '_save_scripts_nonce' ); ?>
+	<input type="submit" value="<?php _e( 'Save Changes', CMHeaderAndFooterSL::$plugin_text_domain ); ?>" class="button-primary" />
+</form>

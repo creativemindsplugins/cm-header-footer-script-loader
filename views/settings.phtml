@@ -1,0 +1,499 @@
+<?php include 'top.phtml'; ?>
+<script>
+jQuery(function($) {
+	$('.cm-settings-tabs a').click(function() {
+		var match = this.href.match(/\#tab\-([^\#]+)$/);
+		$('#settings .settings-category.current').removeClass('current');
+		$('#settings .settings-category-'+ match[1]).addClass('current');
+		$('.cm-settings-tabs a.current').removeClass('current');
+		$('.cm-settings-tabs a[href="#tab-'+ match[1] +'"]').addClass('current');
+		this.blur();
+	});
+	if (location.hash.length > 0) {
+		$('.cm-settings-tabs a[href="'+ location.hash +'"]').click();
+	} else {
+		$('.cm-settings-tabs li:first-child a').click();
+	}
+});
+</script>
+<style>
+.cm-settings-tabs, .cm-settings-tabs li {list-style: none; padding: 0; margin: 0;}
+.cm-settings-tabs li, .cm-settings-tabs a {display: inline-block;}
+.cm-settings-tabs a {padding: 0.5em 1em 12px 1em; font-size: 130%; font-weight: bold; text-decoration: none; border: solid #cccccc 1px; border-bottom: none; border-radius: 0px; position: relative; top: 4px; margin-right: 0.4em; z-index: 88; background: #e9e9e9; color: #666666;}
+.cm-settings-tabs a.current {color: black; background: white;}
+.settings-category {display: none;}
+.settings-category.current {display: block;}
+</style>
+
+<div id="settings">
+
+ <ul class="cm-settings-tabs">
+	<li><a href="#tab-upgrade">Upgrade</a>
+	<li><a href="#tab-general">General Settings</a>
+	<li><a href="#tab-installation">Installation Guide</a>
+</ul>
+
+<div class="inner">
+
+<div class="settings-category settings-category-upgrade">
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td><?php echo do_shortcode( '[cminds_upgrade_box id="cmhandfsl"]' ); ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="settings-category settings-category-general">
+
+<div class="cmhandfsl_settings_main_wrapper">
+
+	<div class="cmhandfsl_settings_wrapper">
+		
+		<a href="javascript:void(0);" class="cmhandfsl_create button" style="margin-top:0px !important;">Add New Script</a>
+		
+		<div class="cmhandfsl-wrapper-new">
+			
+			<div class="cmhandfsl-wrapper-new-add">
+				
+				<div class="cmhandfsl-custom-script-add cmhandfsl-custom-script-row hide">
+				
+					<div class="cmhandfsl-wrapper-new-row-1 cmhandfsl-custom-script-row-inner">
+						<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+							<label>
+								<?php _e( 'Script Name:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+							</label>
+						</div>
+						<div class="cmhandfsl-wrapper-new-col-right">
+							<div class="cm_field_help" data-title="Define a name for the script. It’s for internal usage only."></div>&nbsp;&nbsp;&nbsp;
+							<input type="text" name="item-name" class="item-name for_add" value="" />
+						</div>
+					</div>
+					<div class="cmhandfsl-wrapper-new-row-2 cmhandfsl-custom-script-row-inner">
+						<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+							<label>
+								<?php _e( 'Script Code (CSS, JS):', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+							</label>
+						</div>
+						<div class="cmhandfsl-wrapper-new-col-right">
+							<div class="cm_field_help" data-title="Enter the code for your script. Ensure the code is valid and tested to prevent errors."></div>&nbsp;&nbsp;&nbsp;
+							<textarea name="item-code"></textarea>
+						</div>
+					</div>
+					
+					<div class="cmhandfsl_expand_collapse hide">
+						<div class="cmhandfsl-wrapper-new-row-21 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label>
+									<?php _e( 'Note:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right">
+								<div class="cm_field_help" data-title="Add a brief description of the script's purpose or functionality. This note will appear as a tooltip in the page/post meta box."></div>&nbsp;&nbsp;&nbsp;
+								<textarea style="height:50px;" name="item-note"></textarea>
+							</div>
+						</div>
+						<div class="cmhandfsl-wrapper-new-row-3 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label>
+									<?php _e( 'Script Type:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right">
+								<div class="cm_field_help" data-title="Select the type of script. This ensures the script is handled and applied correctly on the page."></div>&nbsp;&nbsp;&nbsp;
+								<select class="item-type" name="item-type">
+									<option value="css"><?php _e( 'CSS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="js"><?php _e( 'JS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="php" disabled><?php _e( 'PHP (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="html" disabled><?php _e( 'HTML (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+								</select>
+							</div>
+						</div>
+						<div class="cmhandfsl-wrapper-new-row-4 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label>
+									<?php _e( 'Script Location:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right">
+								<div class="cm_field_help" data-title="Choose where the script will be added on the page."></div>&nbsp;&nbsp;&nbsp;
+								<select class="item-destination" name="item-destination">
+									<option value="header"><?php _e( 'Header Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="footer"><?php _e( 'Footer Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="after_body_tag" disabled><?php _e( 'After opening body tag (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="before_content" disabled><?php _e( 'Before Content (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="after_content" disabled><?php _e( 'After Content (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+								</select>
+							</div>
+						</div>
+						<div class="cmhandfsl-wrapper-new-row-5 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label style="color:gray;">
+									<?php _e( 'Device Type:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+								<br><span style="color:green;">(Only in Pro)</span>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right">
+								<div class="cm_field_help" data-title="Select the devices where the script should load. This allows you to target specific platforms."></div>&nbsp;&nbsp;&nbsp;
+								<select disabled class="item-type" name="item-device">
+									<option value="all_devices"><?php _e( 'All Devices', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="desktop"><?php _e( 'Desktop', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="mobile"><?php _e( 'Mobile', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+								</select>
+							</div>
+						</div>
+						<div class="cmhandfsl-wrapper-new-row-6 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label>
+									<?php _e( 'Where to Load:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right">
+								<div class="cm_field_help" data-title="Specify where the script should load. You can override global settings for specific pages or posts."></div>&nbsp;&nbsp;&nbsp;
+								<select class="item-load-n for_add" name="item-load">
+									<option value="all"><?php _e( 'Load by default on all posts and pages', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="custom"><?php _e( 'Load on selected post types', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="home" disabled><?php _e( 'Load on homepage only (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="postpage" disabled><?php _e( 'Load on specific posts/pages (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="url" disabled><?php _e( 'Load on specific URLs (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="cats" disabled><?php _e( 'Load by post categories (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="tags" disabled><?php _e( 'Load by post tags (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+									<option value="off"><?php _e( 'Don’t load by default', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+								</select>
+								
+								<div class="cmhandfsl_second_hidden_con">
+									<div class="cpt hidden">
+										<label>
+											<?php _e( 'Post Types:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+										</label>
+										<div class="right">
+											<div class="cm_field_help" data-title="Select post types where the script should load."></div>&nbsp;&nbsp;&nbsp;
+											<select name="cpt" class="cpt" multiple="multiple">
+												<option value="">Select</option>
+												<?php
+												$args_default = array(
+													'public' => true,
+												);
+												$post_types = get_post_types( $args_default, 'objects', 'and' );
+												if( isset( $post_types ) && ! empty( $post_types ) ) {
+													foreach( $post_types as $post_type ) {
+														echo '<option value="'.$post_type->name.'">'.$post_type->labels->singular_name.'</option>';
+													}
+												}
+												?>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="cmhandfsl-wrapper-new-row-7 cmhandfsl-custom-script-row-inner">
+							<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+								<label style="color:gray;">
+									<?php _e( 'Timeframe:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+								</label>
+								<br><span style="color:green;">(Only in Pro)</span>
+							</div>
+							<div class="cmhandfsl-wrapper-new-col-right cmhandfsl_time_restriction_wrapper">
+								<div class="cm_field_help" data-title="Set specific time intervals when the script should be active. To add multiple intervals, click the + button. If no timeframes are set, the script will run continuously."></div>&nbsp;&nbsp;&nbsp;
+								<div class="cmhandfsl_time_restriction_wrapper_con">
+									<div class="to-copy">
+										<label style="color:gray;">From:</label>
+										<input disabled="disabled" type="datetime" value="dd / mm / yyyy hh:mm" />
+										<label style="color:gray;">To:</label>
+										<input disabled="disabled" type="datetime" value="dd / mm / yyyy hh:mm" />
+										<a href="javascript:void(0);" disabled class="button cmhandfsl-delete-restriction">x</a><br>
+									</div>
+								</div>
+								<div style="float:right; width:97%;">
+									<a href="javascript:void(0);" disabled class="button cmhandfsl-time-restriction-add-new">+</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="cmhandfsl-wrapper-new-row-8 cmhandfsl-custom-script-row-inner">
+						<div>
+							<input type="button" class="button-primary" value="Save Script" id="cmhandfsl-create-rule-btn" />
+						</div>
+						<div class="last">
+							<label><span style="color:gray;">Pause Script:</span><br><span style="color:green;">(Only in Pro)</span></label>							
+							<input type="checkbox" disabled style="vertical-align:bottom;" />
+							<input type="hidden" name="item-disabled" value="0" />
+						</div>
+					</div>
+					<div class="cmhandfsl-wrapper-new-row-9 cmhandfsl-custom-script-row-inner">
+						<a href="javascript:void(0);" class="cmhandfsl_expand_collapse_btn for_add">Expand Additional Settings (&#8595;)</a>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="cmhandfsl-wrapper-new-old">
+			
+				<?php
+				$scripts = get_option( CMHeaderAndFooterSL::$plugin_slug . '_scripts' );
+				$scripts = maybe_unserialize( $scripts );
+				//pr($scripts);
+				?>
+				<div class="cmhandfsl-wrapper-new-old-inner">
+					<?php
+					if ( isset( $scripts ) && is_array( $scripts ) && !empty( $scripts ) ) {
+						foreach ( $scripts as $rowKey => $script ) {
+														
+							$item_name = $script['item_name'];																		// Script Name
+							$item_code = $script['item_code'];																		// Script Code
+							$item_note = isset($script['item_note'])?$script['item_note']:'';										// Note
+							$item_type = $script['item_type'];																		// Script Type
+							$item_destination = $script['item_destination'];														// Script Location
+							$item_device = $script['item_device'];																	// Device Type
+							
+							$item_load = $script['item_load'];																		// Where to Load
+							$item_load_cpt = isset($script['item_load_cpt'])?$script['item_load_cpt']:array();						// Post Types
+							$item_load_postpage = isset($script['item_load_postpage'])?$script['item_load_postpage']:array();		// Posts/Pages
+							$item_load_url = $script['item_load_url'];																// URLs
+							$item_load_cats = isset($script['item_load_cats'])?$script['item_load_cats']:array();					// Categories
+							$item_load_tags = isset($script['item_load_tags'])?$script['item_load_tags']:array();					// Tags
+							
+							$item_timeframe = isset($script['item_timeframe'])?$script['item_timeframe']:array();					// Timeframe
+							
+							$item_disabled = $script['item_disabled'];																// Pause
+							
+							$flag = true;
+							if($sh != '') {
+								if (stripos($item_name, $sh) !== false) {
+									$flag = false;
+								} else if (stripos($item_code, $sh) !== false) {
+									$flag = false;
+								} else if (stripos($item_note, $sh) !== false) {
+									$flag = false;
+								}
+								if($flag == true) {
+									continue;
+								}
+							}
+							?>
+							<div class="cmhandfsl_scripts_list" id="cmhandfsl_scripts_list_<?php echo $rowKey; ?>" data-rowkey="<?php echo $rowKey; ?>">
+								
+								<div class="cmhandfsl-custom-script-row">
+								
+									<div class="cmhandfsl-wrapper-new-row-1 cmhandfsl-custom-script-row-inner">
+										<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+											<label>
+												<?php _e( 'Script Name:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+											</label>
+										</div>
+										<div class="cmhandfsl-wrapper-new-col-right">
+											<div class="cm_field_help" data-title="Define a name for the script. It’s for internal usage only."></div>&nbsp;&nbsp;&nbsp;
+											<input type="text" name="item-name" class="item-name for_edit" value="<?php echo stripslashes($item_name); ?>" />
+										</div>
+									</div>
+									<div class="cmhandfsl-wrapper-new-row-2 cmhandfsl-custom-script-row-inner">
+										<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+											<label>
+												<?php _e( 'Script Code (CSS, JS):', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+											</label>
+										</div>
+										<div class="cmhandfsl-wrapper-new-col-right">
+											<div class="cm_field_help" data-title="Enter the code for your script. Ensure the code is valid and tested to prevent errors."></div>&nbsp;&nbsp;&nbsp;
+											<textarea name="item-code"><?php echo stripslashes( json_decode( $item_code ) ); ?></textarea>
+										</div>
+									</div>
+								
+									<div class="cmhandfsl_expand_collapse hide">
+										<div class="cmhandfsl-wrapper-new-row-21 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label>
+													<?php _e( 'Note:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right">
+												<div class="cm_field_help" data-title="Add a brief description of the script's purpose or functionality. This note will appear as a tooltip in the page/post meta box."></div>&nbsp;&nbsp;&nbsp;
+												<textarea style="height:50px;" name="item-note"><?php echo stripslashes($item_note); ?></textarea>
+											</div>
+										</div>
+										<div class="cmhandfsl-wrapper-new-row-3 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label>
+													<?php _e( 'Script Type:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right">
+												<div class="cm_field_help" data-title="Select the type of script. This ensures the script is handled and applied correctly on the page."></div>&nbsp;&nbsp;&nbsp;
+												<select class="item-type" name="item-type">
+													<option value="css" <?php selected( $item_type, 'css' ); ?>><?php _e( 'CSS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="js" <?php selected( $item_type, 'js' ); ?>><?php _e( 'JS', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="php" <?php selected( $item_type, 'php' ); ?>><?php _e( 'PHP (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="html" <?php selected( $item_type, 'html' ); ?>><?php _e( 'HTML (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+												</select>
+											</div>
+										</div>
+										<div class="cmhandfsl-wrapper-new-row-4 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label>
+													<?php _e( 'Script Location:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right">
+												<div class="cm_field_help" data-title="Choose where the script will be added on the page."></div>&nbsp;&nbsp;&nbsp;
+												<select class="item-destination" name="item-destination">
+													<option value="header" <?php selected( $item_destination, 'header' ); ?>><?php _e( 'Header Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="footer" <?php selected( $item_destination, 'footer' ); ?>><?php _e( 'Footer Script', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="after_body_tag" <?php selected( $item_destination, 'after_body_tag' ); ?>><?php _e( 'After opening body tag (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="before_content" <?php selected( $item_destination, 'before_content' ); ?>><?php _e( 'Before Content (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="after_content" <?php selected( $item_destination, 'after_content' ); ?>><?php _e( 'After Content (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+												</select>
+											</div>
+										</div>
+										<div class="cmhandfsl-wrapper-new-row-5 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label style="color:gray;">
+													<?php _e( 'Device Type:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+												<br><span style="color:green;">(Only in Pro)</span>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right">
+												<div class="cm_field_help" data-title="Select the devices where the script should load. This allows you to target specific platforms."></div>&nbsp;&nbsp;&nbsp;
+												<select disabled class="item-type" name="item-device">
+													<option value="all_devices" <?php selected( $item_device, 'all_devices' ); ?>><?php _e( 'All Devices', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="desktop" <?php selected( $item_device, 'desktop' ); ?>><?php _e( 'Desktop', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="mobile" <?php selected( $item_device, 'mobile' ); ?>><?php _e( 'Mobile', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+												</select>
+											</div>
+										</div>
+										<div class="cmhandfsl-wrapper-new-row-6 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label>
+													<?php _e( 'Where to Load:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right">
+												<div class="cm_field_help" data-title="Specify where the script should load. You can override global settings for specific pages or posts."></div>&nbsp;&nbsp;&nbsp;
+												<select class="item-load-n for_edit" name="item-load">
+													<option value="all" <?php selected( $item_load, 'all' ); ?>><?php _e( 'Load by default on all posts and pages', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="custom" <?php selected( $item_load, 'custom' ); ?>><?php _e( 'Load on selected post types', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="home" <?php selected( $item_load, 'home' ); ?>><?php _e( 'Load on homepage only (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="postpage" <?php selected( $item_load, 'postpage' ); ?>><?php _e( 'Load on specific posts/pages (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="url" <?php selected( $item_load, 'url' ); ?>><?php _e( 'Load on specific URLs (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="cats" <?php selected( $item_load, 'cats' ); ?>><?php _e( 'Load by post categories (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option disabled value="tags" <?php selected( $item_load, 'tags' ); ?>><?php _e( 'Load by post tags (Pro Only)', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+													<option value="off" <?php selected( $item_load, 'off' ); ?>><?php _e( 'Don’t load by default', CMHeaderAndFooterSL::$plugin_text_domain ); ?></option>
+												</select>
+												
+												<div class="cmhandfsl_second_hidden_con">
+													<div class="cpt <?php if ($item_load != 'custom') { echo 'hidden'; } ?>">
+														<label>
+															<?php _e( 'Post Types:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+														</label>
+														<div class="right">
+															<div class="cm_field_help" data-title="Select post types where the script should load."></div>&nbsp;&nbsp;&nbsp;
+															<select name="cpt" class="cpt" multiple="multiple">
+																<option value="">Select</option>
+																<?php
+																$selectedcptIDs = $item_load_cpt;
+																$args_default = array(
+																	'public' => true,
+																);
+																$post_types = get_post_types( $args_default, 'objects', 'and' );
+																if( isset( $post_types ) && ! empty( $post_types ) ) {
+																	foreach( $post_types as $post_type ) {
+																		if ( in_array( $post_type->name, $selectedcptIDs ) ) {
+																			echo '<option value="'.$post_type->name.'" selected="selected">'.$post_type->labels->singular_name.'</option>';
+																		} else {
+																			echo '<option value="'.$post_type->name.'">'.$post_type->labels->singular_name.'</option>';
+																		}
+																	}
+																}
+																?>
+															</select>
+														</div>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+										<div class="cmhandfsl-wrapper-new-row-7 cmhandfsl-custom-script-row-inner">
+											<div class="cmhandfsl-wrapper-new-col-left handfsl_field_help_container">
+												<label style="color:gray;">
+													<?php _e( 'Timeframe:', CMHeaderAndFooterSL::$plugin_text_domain ); ?>
+												</label>
+												<br><span style="color:green;">(Only in Pro)</span>
+											</div>
+											<div class="cmhandfsl-wrapper-new-col-right cmhandfsl_time_restriction_wrapper">
+												<div class="cm_field_help" data-title="Set specific time intervals when the script should be active. To add multiple intervals, click the + button. If no timeframes are set, the script will run continuously."></div>&nbsp;&nbsp;&nbsp;
+												<div class="cmhandfsl_time_restriction_wrapper_con">
+													<?php foreach ( $item_timeframe as $key => $time ) : ?>
+														<div>
+															<label style="color:gray;">From:</label>
+															<input disabled="disabled" type="datetime" value="<?php echo $time['from']; ?>" />
+															<label style="color:gray;">To:</label>
+															<input disabled="disabled" type="datetime" value="<?php echo $time['to']; ?>" />
+															<a href="javascript:void(0);" disabled class="button cmhandfsl-delete-restriction">x</a><br>
+														</div>
+													<?php endforeach; ?>
+													<div class="to-copy">
+														<label style="color:gray;">From:</label>
+														<input disabled="disabled" type="datetime" value="dd / mm / yyyy hh:mm" />
+														<label style="color:gray;">To:</label>
+														<input disabled="disabled" type="datetime" value="dd / mm / yyyy hh:mm" />
+														<a href="javascript:void(0);" disabled class="button cmhandfsl-delete-restriction">x</a><br>
+													</div>
+												</div>
+												<div style="float:right; width:97%;">
+													<a href="javascript:void(0);" disabled class="button cmhandfsl-time-restriction-add-new">+</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+									<div class="cmhandfsl-wrapper-new-row-8 cmhandfsl-custom-script-row-inner">
+										<div>
+											<input type="button" class="button-primary" value="Update" id="cmhandfsl-update-rule-btn" data-rowkey="<?php echo esc_attr( $rowKey ); ?>" />
+											&nbsp;
+											<input type="button" class="button-primary" value="Delete" id="cmhandfsl-delete-rule-btn" data-rowkey="<?php echo esc_attr( $rowKey ); ?>" />
+										</div>
+										<div class="last">
+											<label><span style="color:gray;">Pause Script:</span><br><span style="color:green;">(Only in Pro)</span></label>
+											<input type="checkbox" disabled style="vertical-align:bottom;" />
+											<input type="hidden" name="item-disabled" value="0" />
+										</div>
+									</div>
+									<div class="cmhandfsl-wrapper-new-row-9 cmhandfsl-custom-script-row-inner">
+										<a href="javascript:void(0);" class="cmhandfsl_expand_collapse_btn for_edit">Expand Additional Settings (&#8595;)</a>
+									</div>
+								
+								</div>
+					
+							</div>
+							<?php
+						}
+					}
+					?>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</div>
+
+</div>
+
+</div>
+
+<div class="settings-category settings-category-installation">
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td><?php echo do_shortcode( '[cminds_free_guide id="cmhandfsl"]' ); ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+			
+</div>
+
+</div>
