@@ -52,7 +52,7 @@ With the [Premium version of our Insert Headers and Footers Plugin](https://www.
 * Change as many JS scripts and CSS styles as you need
 * Choose what scripts will be loaded on header or footer
 * Define scripts to load on all posts and pages
-* Define scripts to load on specific posts or pages
+* Define scripts to load on specific post types
 
 </details>
 
