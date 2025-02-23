@@ -24,10 +24,12 @@ You can easily manage and control any extra scripts and styles that you need wit
 
 ### Plugin usage instructions
 
-* Enter the “Script Name” and copy the “Script Code”
-* Choose the “Script Type” (CSS or JS), the “Script Location” (header or footer), and the “Autoload Option”
-* Mark the “Custom Post Types” that need the script to be enabled
-* Press “Save Changes”
+* Click “Add New Script.”
+* Enter a “Script Name” and paste the code into “Script Code.”
+* Expand the additional settings by clicking “Expand Additional Settings.”
+* Optionally, add a note with explanations for the script.
+* Select the “Script Type,” choose the “Script Location,” and configure the “Where to Load” option.
+* Click “Save Script” to apply the changes.
 
 ## Insert Headers and Footers Premium Edition
 
